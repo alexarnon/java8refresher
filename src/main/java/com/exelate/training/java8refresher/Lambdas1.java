@@ -1,9 +1,6 @@
 package com.exelate.training.java8refresher;
 
+@SuppressWarnings({"StaticPseudoFunctionalStyleMethod", "ConstantConditions", "Convert2MethodRef"})
 public class Lambdas1 {
-
-    public static void main(String[] args) {
-
-    }
 
 }
