@@ -2,13 +2,17 @@ package com.exelate.training.java8refresher;
 
 import com.google.common.collect.ImmutableMap;
 import org.junit.Test;
+import sun.jvm.hotspot.oops.Array;
 
 import java.util.*;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
 public class Lambdas1Test {
@@ -139,17 +143,126 @@ public class Lambdas1Test {
 
     private void addToMap(Map<String, Set<Integer>> map, String key, int value) {
 
-        //Set<Integer> set = map.get(key);
-        //if (set == null) {
-        //    set = new HashSet<>();
-        //    map.put(key, set);
-        //}
-        //set.add(value);
+        Set<Integer> set = map.get(key);
+        if (set == null) {
+            set = new HashSet<>();
+            map.put(key, set);
+        }
+        set.add(value);
+
 
         map.putIfAbsent(key, new HashSet<>()).add(value);
-        //map.computeIfAbsent(key, k -> new HashSet<>()).add(value);
+
+
+        map.computeIfAbsent(key, k -> new HashSet<>()).add(value);
 
     }
+
+
+
+    @Test
+    public void locking() {
+
+        ReentrantLock lock = new ReentrantLock();
+
+        // ...
+
+        withLock(lock, () -> System.out.printf("hello"));
+
+
+    }
+
+
+    public void withLock(ReentrantLock myLock, Runnable action) {
+
+        myLock.lock();
+        try {
+            action.run();
+        } finally {
+            myLock.unlock();
+        }
+    }
+
+
+
+
+    @Test
+    public void streams1() {
+
+        System.out.println(
+
+        Stream.concat(Stream.of("xxx", "yyy"), Stream.generate(() -> "hello").limit(5))
+                .collect(Collectors.toList())
+
+        );
+
+    }
+
+
+    @Test
+    public void streamsCollections() {
+
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
+
+        System.out.println(numbers.stream()
+                //.parallel()
+                .filter(n -> n % 2 == 0)
+                .map(n -> n * 3)
+                .sorted((x, y) -> y - x)
+                .collect(toList())
+        );
+
+    }
+
+
+    @Test
+    public void example1() {
+
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
+
+        // Ordered collection, find the double of the first even element greater than 3.
+
+        int result = 0;
+        for (int n: numbers) {
+            if (n > 3 && n % 2 == 0) {
+                result = n * 2;
+                break;
+            }
+        }
+
+        System.out.println(result);
+
+        ///////////////////////////////
+
+        System.out.println(
+           numbers.stream()
+                .filter(n -> n > 3)
+                .filter(n -> n % 2 == 0)
+                .map(n -> n * 2)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("xxx"))
+        );
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Test
     public void peeking() {
