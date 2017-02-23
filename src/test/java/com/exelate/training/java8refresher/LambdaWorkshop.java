@@ -1,4 +1,4 @@
-package com.exelate.training.java_8_refresher;
+package com.exelate.training.java8refresher;
 
 import com.google.common.collect.ImmutableMap;
 import org.junit.Test;
@@ -6,7 +6,6 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class LambdaWorkshop {
 

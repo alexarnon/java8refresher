@@ -1,4 +1,4 @@
-package com.exelate.training.java_8_refresher;
+package com.exelate.training.java8refresher;
 
 /**
  * @author alexarnon
