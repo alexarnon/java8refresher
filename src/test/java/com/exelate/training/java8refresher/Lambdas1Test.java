@@ -7,6 +7,9 @@ import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 public class Lambdas1Test {
 
@@ -146,6 +149,13 @@ public class Lambdas1Test {
         map.putIfAbsent(key, new HashSet<>()).add(value);
         //map.computeIfAbsent(key, k -> new HashSet<>()).add(value);
 
+    }
+
+    @Test
+    public void peeking() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
+
+        // TODO: All greater and 4 and smaller than 9, sorted, into a list.
     }
 
 }
