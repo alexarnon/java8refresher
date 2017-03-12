@@ -8,13 +8,17 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
-public class LambdaWorkshop {
+public class LambdaWorkshopSolutions {
 
     @Test
     public void collectToSet() {
 
         List<Integer> input = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
+        System.out.println(
+                input.stream()
+                        .collect(Collectors.toSet())
+        );
     }
 
 
@@ -23,6 +27,11 @@ public class LambdaWorkshop {
 
         List<Integer> input = Arrays.asList(5, 2, 3, 1, 4);
 
+        System.out.println(
+                input.stream()
+                        .sorted()
+                        .collect(Collectors.toList())
+        );
     }
 
 
@@ -31,6 +40,11 @@ public class LambdaWorkshop {
 
         List<String> names = Arrays.asList("gilad", "amir", "maya", "ronen", "efrat", "alon");
 
+        System.out.println(
+                names.stream()
+                        .filter(s -> s.length() == 5)
+                        .count()
+        );
     }
 
 
@@ -39,11 +53,12 @@ public class LambdaWorkshop {
 
         List<String> names = Arrays.asList("gilad", "amir", "maya", "ronen", "efrat", "alon");
 
-        // 1. Hint: with a Comparator...
-
-
-        // 2. Hint: Comparator.comparingInt()
-
+        // Hint: Comparator.comparingInt()
+        System.out.println(
+                names.stream()
+                        .sorted(Comparator.comparingInt(String::length))  // (s1, s2) -> s1.length() - s2.length()
+                        .collect(toList())
+        );
     }
 
 
@@ -52,6 +67,20 @@ public class LambdaWorkshop {
 
         List<String> names = Arrays.asList("gilad", "amir", "maya", "ronen", "efrat", "alon");
 
+        System.out.println(
+                names.stream()
+                        .sorted(Comparator.comparingInt(String::length))
+                        .reduce(
+                                "",
+                                (acc, name) -> acc.isEmpty() ? name : acc + "," + name
+                )
+        );
+
+        System.out.println(
+                names.stream()
+                        .sorted(Comparator.comparingInt(String::length))
+                        .collect(Collectors.joining(","))
+        );
     }
 
 
@@ -60,8 +89,13 @@ public class LambdaWorkshop {
 
         List<Integer> input = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
-        // Hint: Collect group by ... something.
+        // Hint: Collect group by.
 
+        System.out.println(
+                input.stream()
+                        .filter(i -> i % 2 == 0)
+                        .collect(Collectors.groupingBy(i -> i > 5 ? "greater_than" : "smaller_than"))
+        );
     }
 
 
@@ -174,6 +208,4 @@ public class LambdaWorkshop {
 
         // Hint: FlatMap.
     }
-
 }
-
