@@ -1,14 +1,19 @@
 package com.exelate.training.java8refresher;
 
 import com.google.common.collect.ImmutableMap;
+import org.apache.commons.lang3.NotImplementedException;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
 public class LambdaWorkshop {
+
+    /* ======================= Streams with Collections ====================== */
+
 
     @Test
     public void collectToSet() {
@@ -173,6 +178,117 @@ public class LambdaWorkshop {
                         new Person("elad", 35)));
 
         // Hint: FlatMap.
+    }
+
+
+    /* ======================= Extra Lambdas 1 ====================== */
+
+
+    /**
+     * A container of a list of CLEAN names.
+     * This means: No extra spaces, proper capitalization, no repetition.
+     */
+    class ContainerOfNames {
+
+        private final List<String> names;
+
+        public ContainerOfNames(Collection<String> names) {
+            throw new NotImplementedException("constructor");
+        }
+
+        /**
+         * For-each. E.g. container.forEach(name -> println(name))
+         */
+        public void forEachName(Object doSomething) {
+            throw new NotImplementedException("for each");
+        }
+
+        /**
+         * Return a list of names, filtered by <code>filter</code>.
+         */
+        public void toFilteredList(Object filter) {
+            throw new NotImplementedException("to list");
+        }
+
+        /**
+         * Return a {@link Set} containing all the names, but with
+         * same iteration order as the original list.
+         */
+        public void toSortedSet() {
+            throw new NotImplementedException("to sorted set");
+        }
+    }
+
+
+    /* ======================= Extra Lambdas 2 ====================== */
+
+
+    // For each of the exercises below, please build *convincing* unit tests.
+
+    // (Extra points for making this more generic).
+
+
+    class Node<T> {
+
+        final T value;
+        final Node<T> left;
+        final Node<T> right;
+
+        public Node(T value, Node<T> left, Node<T> right) {
+            this.value = value;
+            this.left = left;
+            this.right = right;
+        }
+
+    }
+
+
+    /**
+     * Walk the tree, using recursion, execute the function on each node.
+     */
+    void walk1(Node<String> tree, Object function) {
+        throw new NotImplementedException("walk recursively");
+    }
+
+
+    /**
+     * Walk the tree, using recursion, execute the function on each node.
+     * If we exceed the max depth, die horribly.
+     */
+    void walk1Limited(Node<String> tree, Object function) {
+        throw new NotImplementedException("walk recursively with a limit");
+    }
+
+
+    /**
+     * Walk the tree, without recursion, execute the function on each node.
+     */
+    void walk2(Node<String> tree, Object function) {
+        throw new NotImplementedException("walk recursively");
+    }
+
+
+    /**
+     * Count the nodes in the tree.
+     */
+    void size(Node<?> tree) {
+        throw new NotImplementedException("walk recursively");
+    }
+
+
+    /**
+     * Return a sorted list of the tree's values.
+     */
+    void sortedValues(Node<String> tree) {
+        throw new NotImplementedException("sorted list of values");
+    }
+
+
+    /**
+     * Extra points: return a sorted, balanced tree.
+     */
+    Node<String> sorted(Node<String> tree) {
+        throw new NotImplementedException("sorted tree");
     }
 
 }
