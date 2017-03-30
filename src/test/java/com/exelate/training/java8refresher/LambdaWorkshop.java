@@ -5,10 +5,6 @@ import org.apache.commons.lang3.NotImplementedException;
 import org.junit.Test;
 
 import java.util.*;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 public class LambdaWorkshop {
 
@@ -96,6 +92,7 @@ public class LambdaWorkshop {
                 new Person("elad", 35));
 
         // TODO: Map of name -> ages.
+
     }
 
 
@@ -291,5 +288,33 @@ public class LambdaWorkshop {
         throw new NotImplementedException("sorted tree");
     }
 
+
+    /* ======================= Extra Lambdas 3 ====================== */
+
+    /*
+     * Task: Define a class that will implement 3 flow control constructs.
+     * Please design a reasonably friendly API :)
+     * Use standard (i.e. java.util.*) interfaces!
+     *
+     * 1. An IF/IF-ELSE statement.
+     *    Example of use:  Logic.if(<condition>, <run-if-true>)
+     *    Example of use:  Logic.ifElse(<condition>, <run-if-true>, <run-if-false>)
+     *
+     * 2. A WHILE loop.
+     *    Example of use (simple):  Logic.while(<condition>, <body>)
+     *    More useful (?):          Logic.while(<context>, <condition-on-context>, <body-using-context>)
+     *
+     * 3. A CASE construct.
+     *    Example:      Logic.case(<value>, Case(<condition>, <run-if-condition>), Case(..), ...)
+     *    Maybe better: Logic.case(<value>, Case(<condition>, <run-if-condition-with-value>), ...)
+     *
+     * Please provide sample usage tests for all of the above, nice ones!
+     */
+
+    public static class Logic {
+
+        // ...
+
+    }
 }
 
